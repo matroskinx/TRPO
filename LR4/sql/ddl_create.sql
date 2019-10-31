@@ -1,0 +1,10 @@
+CREATE TABLE Bid (Id int(10) NOT NULL AUTO_INCREMENT, Lotid int(10) NOT NULL, value float, `date` datetime NULL, Clientid int(10) NOT NULL, PRIMARY KEY (Id));
+CREATE TABLE CarItem (id int(10) NOT NULL AUTO_INCREMENT, odometer int(20), `condition` varchar(100), shortDescription varchar(200), description varchar(1000), retailPrice float, year datetime NULL, `Column` int(11), PRIMARY KEY (id));
+CREATE TABLE CarMake (name varchar(100), country varchar(100), CarItemid int(10) NOT NULL);
+CREATE TABLE Client (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255), surname varchar(255), email varchar(255), password varchar(255), phone varchar(255), shippingAddress varchar(255), `Column` int(11), PRIMARY KEY (id));
+CREATE TABLE Lot (id int(10) NOT NULL AUTO_INCREMENT, price int(10), status varchar(100), creationDate datetime NULL, endDate datetime NULL, duration float, startingPrice float, CarItemid int(10) NOT NULL, Clientid int(10) NOT NULL, PRIMARY KEY (id));
+ALTER TABLE Lot ADD CONSTRAINT FKLot713111 FOREIGN KEY (Clientid) REFERENCES Client (id);
+ALTER TABLE Bid ADD CONSTRAINT FKBid722923 FOREIGN KEY (Clientid) REFERENCES Client (id);
+ALTER TABLE CarMake ADD CONSTRAINT FKCarMake635455 FOREIGN KEY (CarItemid) REFERENCES CarItem (id);
+ALTER TABLE Lot ADD CONSTRAINT FKLot194235 FOREIGN KEY (CarItemid) REFERENCES CarItem (id);
+ALTER TABLE Bid ADD CONSTRAINT FKBid756030 FOREIGN KEY (Lotid) REFERENCES Lot (id);
